@@ -1,0 +1,42 @@
+import mongoose, { Document, Model } from 'mongoose';
+export interface IUser extends Document {
+    _id: mongoose.Types.ObjectId;
+    firstName: string;
+    lastName: string;
+    email: string;
+    password?: string;
+    avatar?: string;
+    phone?: string;
+    role: 'user' | 'admin';
+    isEmailVerified: boolean;
+    isPhoneVerified: boolean;
+    emailVerificationToken?: string;
+    emailVerificationExpires?: Date;
+    passwordResetToken?: string;
+    passwordResetExpires?: Date;
+    refreshToken?: string;
+    googleId?: string;
+    twoFactorSecret?: string;
+    twoFactorEnabled: boolean;
+    otpCode?: string;
+    otpExpires?: Date;
+    isActive: boolean;
+    lastLogin?: Date;
+    loginAttempts: number;
+    lockUntil?: Date;
+    currency: string;
+    timezone: string;
+    language: string;
+    onboardingCompleted: boolean;
+    aiScore: number;
+    monthlyIncomeGoal: number;
+    monthlySavingsGoal: number;
+    createdAt: Date;
+    updatedAt: Date;
+    comparePassword(candidatePassword: string): Promise<boolean>;
+    isLocked(): boolean;
+    incrementLoginAttempts(): Promise<void>;
+}
+declare const User: Model<IUser>;
+export default User;
+//# sourceMappingURL=User.d.ts.map
